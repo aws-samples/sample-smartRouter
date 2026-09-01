@@ -17,16 +17,25 @@ from utils.config_loader import ConfigLoader
 class MLClassifierBenchmark:
     """Comprehensive benchmarking suite for ML classifier."""
 
-    def __init__(self, samples_dir: str = "samples"):
+    def __init__(
+        self,
+        samples_dir: str = "samples",
+        training_file: str = "training_examples.json",
+        test_file: str = "synthetic_test_data.json"
+    ):
         """
         Initialize benchmark suite.
         
         Args:
             samples_dir: Directory containing training and test data
+            training_file: Name of the training examples file
+            test_file: Name of the synthetic test data file
         """
         self.samples_dir = Path(samples_dir)
-        self.training_data = self._load_json("training_examples.json")
-        self.test_data = self._load_json("synthetic_test_data.json")
+        self.training_file = training_file
+        self.test_file = test_file
+        self.training_data = self._load_json(training_file)
+        self.test_data = self._load_json(test_file)
         
         self.results = {
             "accuracy": {},
@@ -404,12 +413,50 @@ class MLClassifierBenchmark:
 
 def main():
     """Run benchmark suite."""
+    import argparse
+    
+    parser = argparse.ArgumentParser(
+        description="Benchmark the ML Classifier with custom data files",
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog="""
+Examples:
+  python -m utils.benchmark_ml_classifier
+  python -m utils.benchmark_ml_classifier --training training_data.json --test test_data.json
+  python -m utils.benchmark_ml_classifier --samples /path/to/samples --training custom_train.json
+        """
+    )
+    
+    parser.add_argument(
+        "--samples",
+        type=str,
+        default="samples",
+        help="Directory containing training and test data files (default: samples)"
+    )
+    parser.add_argument(
+        "--training",
+        type=str,
+        default="training_examples.json",
+        help="Name of the training examples file (default: training_examples.json)"
+    )
+    parser.add_argument(
+        "--test",
+        type=str,
+        default="synthetic_test_data.json",
+        help="Name of the synthetic test data file (default: synthetic_test_data.json)"
+    )
+    
+    args = parser.parse_args()
+    
     try:
-        benchmark = MLClassifierBenchmark(samples_dir="samples")
+        benchmark = MLClassifierBenchmark(
+            samples_dir=args.samples,
+            training_file=args.training,
+            test_file=args.test
+        )
         results = benchmark.run_full_benchmark()
         
         # Save results to file
-        output_file = Path("samples/benchmark_results.json")
+        output_file = Path(args.samples) / "benchmark_results.json"
         with open(output_file, 'w') as f:
             json.dump(results, f, indent=2)
         
@@ -417,8 +464,16 @@ def main():
         
     except FileNotFoundError as e:
         print(f"❌ Error: {e}")
-        print("Please ensure samples/training_examples.json and samples/synthetic_test_data.json exist")
+        print(f"\nPlease ensure the following files exist:")
+        print(f"  - {Path(args.samples) / args.training}")
+        print(f"  - {Path(args.samples) / args.test}")
+        return 1
+    except Exception as e:
+        print(f"❌ Unexpected error: {e}")
+        return 1
+    
+    return 0
 
 
 if __name__ == "__main__":
-    main()
+    exit(main())
