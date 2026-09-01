@@ -1,0 +1,46 @@
+{
+  "tiers": {
+    "fast": {
+      "models": [
+        "claude-3-5-haiku",
+        "gpt-3.5-turbo",
+        "gemini-1.5-flash"
+      ],
+      "cost_per_1k_tokens": 0.001,
+      "max_tokens": 4096,
+      "avg_latency_ms": 800
+    },
+    "balanced": {
+      "models": [
+        "claude-3-5-sonnet",
+        "gpt-4-turbo",
+        "gemini-1.5-pro"
+      ],
+      "cost_per_1k_tokens": 0.003,
+      "max_tokens": 128000,
+      "avg_latency_ms": 2000
+    },
+    "powerful": {
+      "models": [
+        "claude-opus-4",
+        "gpt-4",
+        "gemini-1.5-ultra"
+      ],
+      "cost_per_1k_tokens": 0.015,
+      "max_tokens": 200000,
+      "avg_latency_ms": 5000
+    }
+  },
+  "complexity_thresholds": {
+    "fast_max": 0.3,
+    "balanced_max": 0.7
+  },
+  "category_complexity_scores": {
+    "simple_query": 0.2,
+    "code_generation": 0.5,
+    "complex_reasoning": 0.9,
+    "document_analysis": 0.6,
+    "creative_writing": 0.5,
+    "data_analysis": 0.8
+  }
+}

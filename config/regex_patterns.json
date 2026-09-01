@@ -1,0 +1,76 @@
+{
+  "classification_patterns": {
+    "simple_query": [
+      "^what is\\s+\\w+",
+      "^define\\s+\\w+",
+      "^explain\\s+\\w+\\s+in\\s+simple\\s+terms",
+      "^who is\\s+\\w+",
+      "^when\\s+",
+      "^where\\s+",
+      "^how\\s+many",
+      "^what\\s+are\\s+",
+      "^tell\\s+me\\s+about",
+      "^describe\\s+"
+    ],
+    "code_generation": [
+      "write\\s+(a|an)\\s+\\w+\\s+(function|class|script)",
+      "create\\s+(a|an)\\s+\\w+\\s+that",
+      "generate\\s+code\\s+for",
+      "implement\\s+\\w+",
+      "build\\s+\\w+\\s+in\\s+\\w+",
+      "develop\\s+\\w+",
+      "write\\s+\\w+\\s+for",
+      "convert\\s+\\w+\\s+to\\s+code",
+      "refactor\\s+this\\s+code",
+      "fix\\s+this\\s+code"
+    ],
+    "complex_reasoning": [
+      "analyze\\s+and\\s+compare",
+      "design\\s+(a|an)\\s+\\w+\\s+architecture",
+      "debug\\s+this\\s+\\w+\\s+issue",
+      "explain\\s+\\w+\\s+step\\s+by\\s+step",
+      "how\\s+would\\s+you\\s+",
+      "what\\s+is\\s+the\\s+best\\s+approach",
+      "propose\\s+a\\s+solution",
+      "compare\\s+\\w+\\s+and\\s+\\w+",
+      "pros\\s+and\\s+cons",
+      "break\\s+down\\s+"
+    ],
+    "document_analysis": [
+      "summarize\\s+this\\s+document",
+      "extract\\s+\\w+\\s+from",
+      "review\\s+and\\s+analyze",
+      "find\\s+the\\s+key\\s+points",
+      "what\\s+does\\s+this\\s+mean",
+      "analyze\\s+this\\s+text",
+      "identify\\s+\\w+\\s+in",
+      "pull\\s+out\\s+",
+      "highlight\\s+",
+      "summarize\\s+"
+    ],
+    "creative_writing": [
+      "write\\s+(a|an)\\s+(story|poem|article)",
+      "create\\s+(a|an)\\s+(marketing|promotional)",
+      "compose\\s+\\w+",
+      "generate\\s+\\w+\\s+content",
+      "write\\s+about\\s+\\w+",
+      "draft\\s+\\w+",
+      "script\\s+\\w+",
+      "author\\s+\\w+",
+      "storytelling\\s+",
+      "narrative\\s+"
+    ],
+    "data_analysis": [
+      "analyze\\s+\\w+\\s+data",
+      "calculate\\s+\\w+\\s+statistics",
+      "what\\s+is\\s+the\\s+correlation",
+      "statistical\\s+analysis",
+      "trend\\s+analysis",
+      "pattern\\s+recognition",
+      "data\\s+visualization",
+      "interpret\\s+\\w+\\s+data",
+      "find\\s+outliers",
+      "descriptive\\s+statistics"
+    ]
+  }
+}
