@@ -68,6 +68,8 @@ SmartRouter (Main Orchestrator)
 └── FallbackRouter (Failure Handling)
 ```
 
+For detailed architecture diagrams and data flow visualization, see [ARCHITECTURE.md](ARCHITECTURE.md).
+
 ## Usage
 
 Run the demo:
