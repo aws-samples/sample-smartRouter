@@ -28,14 +28,19 @@ class MLClassifierBenchmark:
         
         Args:
             samples_dir: Directory containing training and test data
-            training_file: Name of the training examples file
-            test_file: Name of the synthetic test data file
+            training_file: Path to training examples file (absolute or relative)
+            test_file: Path to synthetic test data file (absolute or relative)
         """
         self.samples_dir = Path(samples_dir)
         self.training_file = training_file
         self.test_file = test_file
-        self.training_data = self._load_json(training_file)
-        self.test_data = self._load_json(test_file)
+        
+        # Resolve file paths
+        self.training_path = self._resolve_file_path(training_file)
+        self.test_path = self._resolve_file_path(test_file)
+        
+        self.training_data = self._load_json(self.training_path)
+        self.test_data = self._load_json(self.test_path)
         
         self.results = {
             "accuracy": {},
@@ -43,10 +48,33 @@ class MLClassifierBenchmark:
             "per_category": {}
         }
 
-    def _load_json(self, filename: str) -> Dict:
-        """Load JSON file from samples directory."""
-        file_path = self.samples_dir / filename
+    def _resolve_file_path(self, file_path: str) -> Path:
+        """
+        Resolve file path - supports both absolute paths and relative to samples_dir.
         
+        Args:
+            file_path: File path (absolute or relative)
+            
+        Returns:
+            Resolved Path object
+        """
+        path = Path(file_path)
+        
+        # If absolute path exists, use it
+        if path.is_absolute() and path.exists():
+            return path
+        
+        # If it's just a filename, look in samples_dir
+        if not path.is_absolute():
+            sample_path = self.samples_dir / file_path
+            if sample_path.exists():
+                return sample_path
+        
+        # Return the original path for error reporting
+        return path
+
+    def _load_json(self, file_path: Path) -> Dict:
+        """Load JSON file."""
         if not file_path.exists():
             raise FileNotFoundError(f"File not found: {file_path}")
         
@@ -420,9 +448,19 @@ def main():
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
+  # Using default files in samples directory
   python -m utils.benchmark_ml_classifier
-  python -m utils.benchmark_ml_classifier --training training_data.json --test test_data.json
-  python -m utils.benchmark_ml_classifier --samples /path/to/samples --training custom_train.json
+  
+  # Using custom file names in samples directory
+  python -m utils.benchmark_ml_classifier --training custom_train.json --test custom_test.json
+  
+  # Using absolute file paths
+  python -m utils.benchmark_ml_classifier \\
+    --training /path/to/training_examples.json \\
+    --test /path/to/synthetic_test_data.json
+  
+  # Using different samples directory
+  python -m utils.benchmark_ml_classifier --samples /path/to/data
         """
     )
     
@@ -430,19 +468,22 @@ Examples:
         "--samples",
         type=str,
         default="samples",
-        help="Directory containing training and test data files (default: samples)"
+        help="Directory containing training and test data files (default: samples). "
+             "Used as base path for relative file paths."
     )
     parser.add_argument(
         "--training",
         type=str,
         default="training_examples.json",
-        help="Name of the training examples file (default: training_examples.json)"
+        help="Path to training examples file - can be absolute or relative to --samples directory "
+             "(default: training_examples.json)"
     )
     parser.add_argument(
         "--test",
         type=str,
         default="synthetic_test_data.json",
-        help="Name of the synthetic test data file (default: synthetic_test_data.json)"
+        help="Path to synthetic test data file - can be absolute or relative to --samples directory "
+             "(default: synthetic_test_data.json)"
     )
     
     args = parser.parse_args()
@@ -455,8 +496,11 @@ Examples:
         )
         results = benchmark.run_full_benchmark()
         
-        # Save results to file
-        output_file = Path(args.samples) / "benchmark_results.json"
+        # Save results to file in samples directory
+        output_dir = Path(args.samples)
+        output_dir.mkdir(parents=True, exist_ok=True)
+        output_file = output_dir / "benchmark_results.json"
+        
         with open(output_file, 'w') as f:
             json.dump(results, f, indent=2)
         
@@ -464,9 +508,6 @@ Examples:
         
     except FileNotFoundError as e:
         print(f"❌ Error: {e}")
-        print(f"\nPlease ensure the following files exist:")
-        print(f"  - {Path(args.samples) / args.training}")
-        print(f"  - {Path(args.samples) / args.test}")
         return 1
     except Exception as e:
         print(f"❌ Unexpected error: {e}")
