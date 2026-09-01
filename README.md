@@ -160,6 +160,51 @@ The implementation is designed to be extended:
 - Add new routing strategies by extending `LoadBalancedRouter`
 - Integrate with monitoring systems (Prometheus, Datadog, etc.)
 
+## Benchmarking
+
+### Running the ML Classifier Benchmark
+
+The project includes a comprehensive benchmarking suite to test the GZip-kNN classifier's accuracy and performance.
+
+**Run the benchmark:**
+```bash
+python -m utils.benchmark_ml_classifier
+```
+
+**What it measures:**
+
+1. **Accuracy Benchmark** - Tests classification correctness across 6 task categories (simple query, code generation, complex reasoning, document analysis, creative writing, data analysis)
+2. **Speed Benchmark** - Measures latency and throughput with 50 iterations
+3. **K-Parameter Analysis** - Tests k=3,5,7,10 to find optimal accuracy/speed tradeoff
+4. **Training Size Analysis** - Evaluates performance with different training dataset sizes
+
+**Output includes:**
+
+- Overall accuracy percentage and correct predictions
+- Accuracy breakdown by category and difficulty level (easy/medium/hard)
+- Average latency (ms) and classifications per second
+- K-parameter impact on performance
+- Training size effects on accuracy
+- All results saved to `samples/benchmark_results.json`
+
+**Example results:**
+```
+✅ Accuracy Metrics:
+   Overall Accuracy: 66.67%
+   Total Tests Passed: 20/30
+
+⏱️  Speed Metrics:
+   Average Latency: 0.543 ms
+   Classifications/Second: 1842
+
+📊 Best k-Parameter:
+   k=3: 73.33% accuracy, 0.559ms latency
+```
+
+The benchmark uses pre-configured training and test data from:
+- `samples/training_examples.json` - Training examples per category
+- `samples/synthetic_test_data.json` - Test cases with difficulty levels
+
 ## Notes
 
 - This is a single-file implementation demonstrating all core concepts

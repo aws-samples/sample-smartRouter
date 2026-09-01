@@ -1,0 +1,44 @@
+{
+  "simple_query": [
+    {"text": "What is the population of Germany?", "difficulty": "easy"},
+    {"text": "How many bones are in the human body?", "difficulty": "easy"},
+    {"text": "What is the chemical symbol for gold?", "difficulty": "medium"},
+    {"text": "Explain the water cycle", "difficulty": "medium"},
+    {"text": "What are the benefits of renewable energy?", "difficulty": "hard"}
+  ],
+  "code_generation": [
+    {"text": "Write a Python function to find the largest number in a list", "difficulty": "easy"},
+    {"text": "Create a JavaScript function to shuffle an array", "difficulty": "easy"},
+    {"text": "Implement a hash table in Java", "difficulty": "medium"},
+    {"text": "Write a function to detect cycles in a linked list", "difficulty": "medium"},
+    {"text": "Design and implement a trie data structure", "difficulty": "hard"}
+  ],
+  "complex_reasoning": [
+    {"text": "How would you design a highly available payment system?", "difficulty": "hard"},
+    {"text": "Explain the trade-offs between consistency and availability", "difficulty": "hard"},
+    {"text": "How to handle rate limiting in an API?", "difficulty": "medium"},
+    {"text": "Design a system for parallel processing of large datasets", "difficulty": "hard"},
+    {"text": "What strategies would you use for database sharding?", "difficulty": "medium"}
+  ],
+  "document_analysis": [
+    {"text": "Summarize this research paper on machine learning", "difficulty": "medium"},
+    {"text": "Extract the methodology from this scientific study", "difficulty": "medium"},
+    {"text": "What are the key findings?", "difficulty": "easy"},
+    {"text": "Identify the limitations mentioned in this report", "difficulty": "medium"},
+    {"text": "What is the impact of this study?", "difficulty": "hard"}
+  ],
+  "creative_writing": [
+    {"text": "Write a haiku about the ocean", "difficulty": "easy"},
+    {"text": "Create a dialogue between two old friends reuniting", "difficulty": "medium"},
+    {"text": "Write a fantasy adventure story opening", "difficulty": "medium"},
+    {"text": "Compose a marketing pitch for a tech startup", "difficulty": "medium"},
+    {"text": "Write a complex character backstory for a novel", "difficulty": "hard"}
+  ],
+  "data_analysis": [
+    {"text": "What is the average of these numbers?", "difficulty": "easy"},
+    {"text": "Calculate the standard deviation", "difficulty": "medium"},
+    {"text": "Perform linear regression analysis on this dataset", "difficulty": "medium"},
+    {"text": "Detect anomalies in time series data", "difficulty": "hard"},
+    {"text": "Build a predictive model for customer churn", "difficulty": "hard"}
+  ]
+}

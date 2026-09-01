@@ -1,0 +1,133 @@
+{
+  "accuracy": {
+    "overall_accuracy": 66.66666666666666,
+    "total_correct": 20,
+    "total_tests": 30,
+    "per_category": {
+      "simple_query": {
+        "correct": 2,
+        "total": 5
+      },
+      "code_generation": {
+        "correct": 4,
+        "total": 5
+      },
+      "complex_reasoning": {
+        "correct": 3,
+        "total": 5
+      },
+      "document_analysis": {
+        "correct": 4,
+        "total": 5
+      },
+      "creative_writing": {
+        "correct": 4,
+        "total": 5
+      },
+      "data_analysis": {
+        "correct": 3,
+        "total": 5
+      }
+    },
+    "by_difficulty": {
+      "easy": {
+        "correct": 4,
+        "total": 7
+      },
+      "medium": {
+        "correct": 10,
+        "total": 14
+      },
+      "hard": {
+        "correct": 6,
+        "total": 9
+      }
+    }
+  },
+  "speed": {
+    "average_latency_ms": 0.5428304672241211,
+    "total_classifications": 1500,
+    "total_time_seconds": 0.8142457008361816,
+    "classifications_per_second": 1842.1957874135408,
+    "per_category": {
+      "simple_query": [
+        0.5241708755493164
+      ],
+      "code_generation": [
+        0.5526638031005859
+      ],
+      "complex_reasoning": [
+        0.5674676895141602
+      ],
+      "document_analysis": [
+        0.5530757904052734
+      ],
+      "creative_writing": [
+        0.5273075103759766
+      ],
+      "data_analysis": [
+        0.6182403564453125
+      ]
+    },
+    "scaling_by_k": {
+      "3": 0.5762982368469238,
+      "5": 0.5333709716796875,
+      "7": 0.5222129821777344,
+      "10": 0.5431079864501953,
+      "15": 0.5376911163330078
+    }
+  },
+  "k_analysis": {
+    "3": {
+      "accuracy": 73.33333333333333,
+      "latency_ms": 0.5585304896036783,
+      "correct": 22,
+      "total": 30
+    },
+    "5": {
+      "accuracy": 66.66666666666666,
+      "latency_ms": 0.5627539952596029,
+      "correct": 20,
+      "total": 30
+    },
+    "7": {
+      "accuracy": 70.0,
+      "latency_ms": 0.5572452545166016,
+      "correct": 21,
+      "total": 30
+    },
+    "10": {
+      "accuracy": 50.0,
+      "latency_ms": 0.555301825205485,
+      "correct": 15,
+      "total": 30
+    }
+  },
+  "training_size": {
+    "5": {
+      "accuracy": 16.666666666666664,
+      "latency_ms": 0.0438690185546875,
+      "correct": 5
+    },
+    "10": {
+      "accuracy": 16.666666666666664,
+      "latency_ms": 0.08556048075358073,
+      "correct": 5
+    },
+    "20": {
+      "accuracy": 23.333333333333332,
+      "latency_ms": 0.19823710123697919,
+      "correct": 7
+    },
+    "30": {
+      "accuracy": 33.33333333333333,
+      "latency_ms": 0.2579053243001302,
+      "correct": 10
+    },
+    "60": {
+      "accuracy": 66.66666666666666,
+      "latency_ms": 0.5500316619873047,
+      "correct": 20
+    }
+  }
+}

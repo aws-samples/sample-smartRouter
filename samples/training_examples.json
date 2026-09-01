@@ -1,0 +1,74 @@
+{
+  "simple_query": [
+    "What is the capital of France?",
+    "How many continents are there?",
+    "What is 2 + 2?",
+    "Define photosynthesis",
+    "What is HTML?",
+    "How tall is Mount Everest?",
+    "What color is the sky?",
+    "When was the internet invented?",
+    "What does DNA stand for?",
+    "List the planets in our solar system"
+  ],
+  "code_generation": [
+    "Write a Python function to calculate factorial",
+    "Create a JavaScript function to reverse a string",
+    "Write SQL query to find users over 18",
+    "Implement bubble sort in Java",
+    "Create a REST API endpoint in Flask",
+    "Write a regex pattern to validate email",
+    "Implement binary search algorithm",
+    "Create a class for managing a bank account",
+    "Write a function to parse JSON",
+    "Implement quicksort in Python"
+  ],
+  "complex_reasoning": [
+    "Design a scalable microservices architecture",
+    "Explain how to optimize database queries",
+    "How would you debug a memory leak?",
+    "Design a system to handle real-time stock trading",
+    "Explain the CAP theorem in distributed systems",
+    "How to design a CDN for global content delivery?",
+    "Design an event-driven architecture",
+    "Explain blockchain technology and its applications",
+    "How to implement caching strategies?",
+    "Design a recommendation engine for an e-commerce platform"
+  ],
+  "document_analysis": [
+    "Summarize the key points of this article",
+    "Extract the main topics from this document",
+    "What is the author's conclusion?",
+    "Identify technical terms in this research paper",
+    "Find all dates mentioned in this text",
+    "What are the assumptions stated?",
+    "Extract action items from the meeting notes",
+    "Identify contradictions in this argument",
+    "What is the primary theme?",
+    "List all references cited"
+  ],
+  "creative_writing": [
+    "Write a short story about a mysterious key",
+    "Create a poem about nature",
+    "Write dialogue between two characters meeting for the first time",
+    "Compose a song lyrics about travel",
+    "Write a product description for an innovative gadget",
+    "Create a movie script scene",
+    "Write a letter to your future self",
+    "Compose marketing copy for a startup",
+    "Write a fantasy world description",
+    "Create a mystery story opening"
+  ],
+  "data_analysis": [
+    "What trends do you see in this sales data?",
+    "Calculate the correlation between variables",
+    "How would you handle missing data?",
+    "Interpret these statistical results",
+    "What insights can we draw from this dataset?",
+    "How to identify outliers in data?",
+    "Explain the distribution of this data",
+    "What patterns emerge from time series data?",
+    "How to perform feature scaling?",
+    "Analyze the impact of the campaign on metrics"
+  ]
+}
