@@ -166,9 +166,31 @@ The implementation is designed to be extended:
 
 The project includes a comprehensive benchmarking suite to test the GZip-kNN classifier's accuracy and performance.
 
-**Run the benchmark:**
+**Basic usage (default files):**
 ```bash
 python -m utils.benchmark_ml_classifier
+```
+
+**With custom file names:**
+```bash
+python -m utils.benchmark_ml_classifier --training custom_train.json --test custom_test.json
+```
+
+**With absolute file paths:**
+```bash
+python -m utils.benchmark_ml_classifier \
+  --training /path/to/training_examples.json \
+  --test /path/to/synthetic_test_data.json
+```
+
+**With custom samples directory:**
+```bash
+python -m utils.benchmark_ml_classifier --samples /path/to/data
+```
+
+**View all options:**
+```bash
+python -m utils.benchmark_ml_classifier --help
 ```
 
 **What it measures:**
@@ -201,9 +223,11 @@ python -m utils.benchmark_ml_classifier
    k=3: 73.33% accuracy, 0.559ms latency
 ```
 
-The benchmark uses pre-configured training and test data from:
-- `samples/training_examples.json` - Training examples per category
-- `samples/synthetic_test_data.json` - Test cases with difficulty levels
+The benchmark uses training and test data from:
+- `samples/training_examples.json` - Training examples per category (default)
+- `samples/synthetic_test_data.json` - Test cases with difficulty levels (default)
+
+Supports both relative paths (resolved against `--samples` directory) and absolute file paths.
 
 ## Notes
 
