@@ -1,5 +1,13 @@
 # Smart Routing & Automatic Model Selection
 
+⚠️ **REPOSITORY UNDER MAINTENANCE** ⚠️
+
+**This repository is temporarily under maintenance due to security review.** All functionality has been temporarily disabled pending security audit completion. Please check back soon.
+
+---
+
+## Previous Documentation
+
 A comprehensive implementation of intelligent model selection and routing for AI systems based on the Smart Routing & Automatic Model Selection guide.
 
 ## Features
