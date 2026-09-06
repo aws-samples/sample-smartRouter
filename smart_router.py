@@ -465,8 +465,14 @@ class CachingOptimizer:
         self.cache_ttl = 3600  # 1 hour
 
     def generate_request_hash(self, request_data: Dict) -> str:
-        """Generate cache key for a request."""
+        """
+        Generate cache key for a request.
+        
+        SECURITY: Includes user_id in cache key to prevent cross-user cache access.
+        This ensures Alice cannot retrieve Bob's cached responses.
+        """
         cache_key_data = {
+            "user_id": request_data.get("user_id", "anonymous"),  # CRITICAL: Include user_id
             "user_input": request_data["user_input"],
             "system_prompt": request_data.get("system_prompt", ""),
             "model_tier": request_data.get("tier", "balanced"),
