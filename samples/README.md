@@ -42,7 +42,63 @@ python samples/example_basic_routing.py
 
 ---
 
-### 2. Agent Harness Integration (`example_agent_harness.py`)
+### 2. Decorator Usage (`example_decorator_usage.py`)
+
+Shows how to use the `@SmartRouter` decorator for automatic model selection on LLM-calling functions.
+
+**What it demonstrates:**
+- Basic decorator (`@SmartRouter`)
+- Verbose decorator with routing output (`@SmartRouterVerbose`)
+- Custom metadata callbacks
+- Accessing routing info inside functions
+- Caching control
+- Metadata tracking and statistics
+- Multi-user scenarios
+- Conversation context handling
+
+**Run it:**
+```bash
+python samples/example_decorator_usage.py
+```
+
+**Expected output:**
+- 10 different decorator usage patterns
+- Routing decisions for each pattern
+- Execution summaries and statistics
+
+**Key patterns shown:**
+1. **Basic** - Minimal decorator usage
+2. **Verbose** - See routing decisions in console
+3. **Callback** - Custom handling of routing metadata
+4. **Info Access** - Use routing info inside function
+5. **No Caching** - Force fresh calls
+6. **Tracking** - Full execution history
+7. **Custom IDs** - Flexible user ID extraction
+8. **Multi-User** - Per-request routing decisions
+9. **Conversation** - Handle context history
+10. **Stats** - Get execution summaries
+
+**Decorator variants:**
+```python
+from smart_router_decorator import (
+    SmartRouter,                 # Basic with caching
+    SmartRouterVerbose,         # Shows decisions
+    SmartRouterNoCaching,       # No caching
+    SmartRouterWithMetadata,    # Full tracking
+)
+
+@SmartRouter
+async def my_llm_function(user_input: str, user_id: str = "user1", **kwargs):
+    routing_info = kwargs.get("_routing_info")
+    model = kwargs.get("_selected_model")
+    tier = kwargs.get("_selected_tier")
+    await asyncio.sleep(0.1)
+    return f"[{model}] Response to: {user_input}"
+```
+
+---
+
+### 3. Agent Harness Integration (`example_agent_harness.py`)
 
 Shows how to integrate SmartRouter with an agent system that selects appropriate tools based on routing decisions.
 
@@ -69,7 +125,7 @@ python samples/example_agent_harness.py
 
 ---
 
-### 3. Framework Integration Patterns (`example_framework_integration.py`)
+### 4. Framework Integration Patterns (`example_framework_integration.py`)
 
 Demonstrates how SmartRouter integrates with different agent frameworks and architectural patterns.
 
@@ -99,7 +155,35 @@ python samples/example_framework_integration.py
 
 ## Integration Patterns
 
-### Pattern 1: Simple Harness
+### Pattern 1: Decorator (Simplest)
+```python
+from smart_router_decorator import SmartRouter
+
+@SmartRouter
+async def call_llm(user_input: str, user_id: str = "user1", **kwargs):
+    tier = kwargs.get("_selected_tier")
+    model = kwargs.get("_selected_model")
+    return f"[{model}] Response"
+
+# Call with automatic routing
+result = await call_llm("Your task", user_id="user123")
+```
+
+### Pattern 2: Direct Router (More Control)
+```python
+from smart_router import SmartRouter
+
+router = SmartRouter()
+result = await router.route_request({
+    "user_input": "Your task",
+    "user_id": "user123"
+})
+print(f"Tier: {result.tier}")
+print(f"Model: {result.model}")
+print(f"Cost: ${result.estimated_cost:.6f}")
+```
+
+### Pattern 3: Simple Harness
 ```python
 from agent_harness import AgentHarness
 
@@ -291,10 +375,15 @@ cache.cache_ttl = 7200  # 2 hours
 ```
 samples/
 ├── README.md                          # This file
+├── SAMPLES_INDEX.md                   # Index of all samples
 ├── example_basic_routing.py           # Basic SmartRouter usage
+├── example_decorator_usage.py         # Decorator patterns (10 examples)
 ├── example_agent_harness.py           # Agent integration
 ├── example_framework_integration.py   # Framework patterns
-└── [future: benchmarks, data files]
+├── training_examples.json             # ML classifier training data
+├── synthetic_test_data.json           # ML classifier test data
+├── benchmark_results.json             # Benchmark output
+└── [future: more examples and data]
 ```
 
 ---
