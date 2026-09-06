@@ -33,7 +33,7 @@
   },
   "complexity_thresholds": {
     "fast_max": 0.3,
-    "balanced_max": 0.7
+    "balanced_max": 0.65
   },
   "category_complexity_scores": {
     "simple_query": 0.2,

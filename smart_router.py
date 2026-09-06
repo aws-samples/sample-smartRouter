@@ -241,10 +241,10 @@ class ComplexityScorer:
         
         self.tier_manager = TierConfigManager(tier_config)
         self.complexity_weights = {
-            "input_length": 0.2,
-            "task_category": 0.4,
-            "context_size": 0.2,
-            "reasoning_depth": 0.2,
+            "input_length": 0.15,
+            "task_category": 0.55,  # Increased from 0.4 - category is most important
+            "context_size": 0.15,   # Decreased from 0.2
+            "reasoning_depth": 0.15,  # Decreased from 0.2
         }
         self.category_scores = self.tier_manager.category_scores
 
@@ -561,12 +561,16 @@ class SmartRouter:
         )
 
         # Step 3: Calculate complexity
+        # Use category's base complexity score for reasoning_depth, not classification confidence
+        category = classification["category"]
+        category_base_score = self.complexity_scorer.category_scores.get(category, 0.5)
+        
         complexity_score = self.complexity_scorer.calculate_complexity_score(
             {
                 "user_input": request_data["user_input"],
-                "category": classification["category"],
+                "category": category,
                 "context_tokens": len(request_data.get("conversation_history", [])) * 100,
-                "reasoning_depth": classification.get("confidence", 0.5),
+                "reasoning_depth": category_base_score,
             }
         )
 
