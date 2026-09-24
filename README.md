@@ -2,8 +2,6 @@
 
 A comprehensive implementation of intelligent model selection and routing for AI systems based on the Smart Routing & Automatic Model Selection guide.
 
-**✅ Security Review Complete** - All code has been reviewed and hardened.
-
 ## Features
 
 ### 1. **Task Classification System**
@@ -69,8 +67,6 @@ SmartRouter (Main Orchestrator)
 ├── CacheAwareRouter (Cache Optimization)
 └── FallbackRouter (Failure Handling)
 ```
-
-For detailed architecture diagrams and data flow visualization, see [ARCHITECTURE.md](ARCHITECTURE.md).
 
 ## Usage
 
@@ -164,75 +160,6 @@ The implementation is designed to be extended:
 - Add new routing strategies by extending `LoadBalancedRouter`
 - Integrate with monitoring systems (Prometheus, Datadog, etc.)
 
-## Benchmarking
-
-### Running the ML Classifier Benchmark
-
-The project includes a comprehensive benchmarking suite to test the GZip-kNN classifier's accuracy and performance.
-
-**Basic usage (default files):**
-```bash
-python -m utils.benchmark_ml_classifier
-```
-
-**With custom file names:**
-```bash
-python -m utils.benchmark_ml_classifier --training custom_train.json --test custom_test.json
-```
-
-**With absolute file paths:**
-```bash
-python -m utils.benchmark_ml_classifier \
-  --training /path/to/training_examples.json \
-  --test /path/to/synthetic_test_data.json
-```
-
-**With custom samples directory:**
-```bash
-python -m utils.benchmark_ml_classifier --samples /path/to/data
-```
-
-**View all options:**
-```bash
-python -m utils.benchmark_ml_classifier --help
-```
-
-**What it measures:**
-
-1. **Accuracy Benchmark** - Tests classification correctness across 6 task categories (simple query, code generation, complex reasoning, document analysis, creative writing, data analysis)
-2. **Speed Benchmark** - Measures latency and throughput with 50 iterations
-3. **K-Parameter Analysis** - Tests k=3,5,7,10 to find optimal accuracy/speed tradeoff
-4. **Training Size Analysis** - Evaluates performance with different training dataset sizes
-
-**Output includes:**
-
-- Overall accuracy percentage and correct predictions
-- Accuracy breakdown by category and difficulty level (easy/medium/hard)
-- Average latency (ms) and classifications per second
-- K-parameter impact on performance
-- Training size effects on accuracy
-- All results saved to `samples/benchmark_results.json`
-
-**Example results:**
-```
-✅ Accuracy Metrics:
-   Overall Accuracy: 66.67%
-   Total Tests Passed: 20/30
-
-⏱️  Speed Metrics:
-   Average Latency: 0.543 ms
-   Classifications/Second: 1842
-
-📊 Best k-Parameter:
-   k=3: 73.33% accuracy, 0.559ms latency
-```
-
-The benchmark uses training and test data from:
-- `samples/training_examples.json` - Training examples per category (default)
-- `samples/synthetic_test_data.json` - Test cases with difficulty levels (default)
-
-Supports both relative paths (resolved against `--samples` directory) and absolute file paths.
-
 ## Notes
 
 - This is a single-file implementation demonstrating all core concepts
@@ -240,6 +167,15 @@ Supports both relative paths (resolved against `--samples` directory) and absolu
 - Cache TTL is set to 1 hour (configurable)
 - Token estimation uses simple 4-character-per-token heuristic
 - All tiers use simulated current Anthropic model names
+
+⚠️ **Caching Note**: Caching functionality is currently a placeholder and should not be used in production. Full caching implementation with proper context isolation, cache key generation (including user identity, history, tier preference, and model selection), and bounded state management is planned for a future release. Current cache-related code serves as a structural placeholder only.
+
+⚠️ **GZip-kNN Classifier Resource Exhaustion**: The GZip-kNN classifier (`utils/gzip_knn_classifier.py`) performs repeated synchronous gzip compression for every training example during classification. For large prompts or large training sets, this can exhaust routing worker resources. If this becomes a bottleneck in your deployment, consider implementing one of these mitigations:
+  1. **Early Termination**: Stop computing distances once k neighbors from the same category are found
+  2. **Adaptive k**: Reduce k dynamically for large inputs (e.g., k=1 for queries >5KB)
+  3. **Sampling-Based Classification**: Sample M training examples (e.g., k×5 samples) instead of comparing all N examples
+
+Choose based on your accuracy vs. performance tradeoff.
 
 ## Future Enhancements
 
