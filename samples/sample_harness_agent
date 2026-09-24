@@ -1,0 +1,46 @@
+import json
+
+# 1. Define the Tools
+def get_weather(location):
+    # Simulated function
+    if "israel" in location.lower():
+        return "28°C, sunny"
+    return "22°C, cloudy"
+
+available_tools = {
+    "get_weather": get_weather
+}
+
+# 2. Define the Agent Harness
+def run_agent_harness(prompt):
+    messages = [{"role": "system", "content": "You are a helpful assistant. Use tools if you need to."},
+                {"role": "user", "content": prompt}]
+    
+    # Simulate an LLM call & tool loop
+    while True:
+        # Step 1: Model "thinks" & decides whether to call a tool
+        # (In a real app, this would be an API call to OpenAI / Anthropic)
+        print(f"Agent is processing: {messages[-1]}")
+        
+        # Hardcoded simulation of the LLM wanting to use a tool
+        if "weather" in messages[-1]['content'].lower():
+            action = {"tool": "get_weather", "args": {"location": "Kfar Yona, Israel"}}
+        else:
+            action = {"tool": "final_answer"}
+
+        # Step 2: Harness executes the tool if requested
+        if action["tool"] != "final_answer":
+            tool_function = available_tools[action["tool"]]
+            tool_result = tool_function(**action["args"])
+            print(f"Harness executed {action['tool']} -> Result: {tool_result}")
+            
+            # Step 3: Harness feeds the tool result back to the LLM
+            messages.append({"role": "tool", "name": action["tool"], "content": tool_result})
+            
+        else:
+            # Step 4: No tool needed, agent gives final answer
+            print("Agent: The weather in Kfar Yona is currently 28°C and sunny.")
+            break
+
+# Run the Agent
+run_agent_harness("What is the weather like in Kfar Yona?")

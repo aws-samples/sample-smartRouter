@@ -1,0 +1,257 @@
+{
+  "timestamp": "2026-06-17 07:35:09",
+  "results": [
+    {
+      "classifier": "GZipKNN",
+      "k": 3,
+      "training_size": 50,
+      "test_size": 300,
+      "latency_ms": {
+        "min": 0.49687499995343387,
+        "avg": 0.5940679455913292,
+        "max": 1.4267920050770044,
+        "p95": 0.7988330035004765,
+        "p99": 0.9212919976562262
+      },
+      "accuracy": {
+        "overall": 0.64,
+        "precision": 0.6524126631042116,
+        "recall": 0.64,
+        "f1_score": 0.6461467243501118,
+        "by_category": {
+          "complex_reasoning": 0.6,
+          "code_generation": 0.56,
+          "simple_query": 0.9,
+          "creative_writing": 0.7,
+          "document_analysis": 0.58,
+          "data_analysis": 0.5
+        }
+      },
+      "throughput_qps": 858.288159331541
+    },
+    {
+      "classifier": "GZipKNN",
+      "k": 3,
+      "training_size": 100,
+      "test_size": 300,
+      "latency_ms": {
+        "min": 0.8999170095194131,
+        "avg": 1.0778506560018286,
+        "max": 1.91258400445804,
+        "p95": 1.3666659942828119,
+        "p99": 1.6277079994324595
+      },
+      "accuracy": {
+        "overall": 0.8266666666666667,
+        "precision": 0.831888535878504,
+        "recall": 0.8266666666666667,
+        "f1_score": 0.8292693808895604,
+        "by_category": {
+          "complex_reasoning": 0.9,
+          "code_generation": 0.72,
+          "simple_query": 0.94,
+          "creative_writing": 0.78,
+          "document_analysis": 0.9,
+          "data_analysis": 0.72
+        }
+      },
+      "throughput_qps": 428.1284177977055
+    },
+    {
+      "classifier": "GZipKNN",
+      "k": 3,
+      "training_size": 200,
+      "test_size": 300,
+      "latency_ms": {
+        "min": 0.9529580129310489,
+        "avg": 1.1546914938177604,
+        "max": 3.3751250011846423,
+        "p95": 1.6063330112956464,
+        "p99": 2.2043329954613
+      },
+      "accuracy": {
+        "overall": 0.8066666666666666,
+        "precision": 0.8114844641560328,
+        "recall": 0.8066666666666666,
+        "f1_score": 0.8090683932837881,
+        "by_category": {
+          "complex_reasoning": 0.82,
+          "code_generation": 0.7,
+          "simple_query": 0.94,
+          "creative_writing": 0.72,
+          "document_analysis": 0.92,
+          "data_analysis": 0.74
+        }
+      },
+      "throughput_qps": 449.4479938231803
+    },
+    {
+      "classifier": "GZipKNN",
+      "k": 5,
+      "training_size": 50,
+      "test_size": 300,
+      "latency_ms": {
+        "min": 0.4959999932907522,
+        "avg": 0.5912239010406969,
+        "max": 0.9571670088917017,
+        "p95": 0.7674169901292771,
+        "p99": 0.9337920055259019
+      },
+      "accuracy": {
+        "overall": 0.5533333333333333,
+        "precision": 0.6306985972683647,
+        "recall": 0.5533333333333333,
+        "f1_score": 0.5894884219512811,
+        "by_category": {
+          "complex_reasoning": 0.1,
+          "code_generation": 0.66,
+          "simple_query": 0.7,
+          "creative_writing": 0.6,
+          "document_analysis": 0.84,
+          "data_analysis": 0.42
+        }
+      },
+      "throughput_qps": 846.5881213326217
+    },
+    {
+      "classifier": "GZipKNN",
+      "k": 5,
+      "training_size": 100,
+      "test_size": 300,
+      "latency_ms": {
+        "min": 0.8989160123746842,
+        "avg": 1.027416919726723,
+        "max": 1.4304999785963446,
+        "p95": 1.2695410114247352,
+        "p99": 1.4086670125834644
+      },
+      "accuracy": {
+        "overall": 0.7666666666666667,
+        "precision": 0.7800540919165794,
+        "recall": 0.7666666666666667,
+        "f1_score": 0.7733024427979711,
+        "by_category": {
+          "complex_reasoning": 0.66,
+          "code_generation": 0.68,
+          "simple_query": 0.76,
+          "creative_writing": 0.78,
+          "document_analysis": 0.94,
+          "data_analysis": 0.78
+        }
+      },
+      "throughput_qps": 484.3680629635099
+    },
+    {
+      "classifier": "GZipKNN",
+      "k": 5,
+      "training_size": 200,
+      "test_size": 300,
+      "latency_ms": {
+        "min": 0.9058750001713634,
+        "avg": 1.0405630535872963,
+        "max": 1.4420420047827065,
+        "p95": 1.243374979821965,
+        "p99": 1.3554589822888374
+      },
+      "accuracy": {
+        "overall": 0.7766666666666666,
+        "precision": 0.7886899628160989,
+        "recall": 0.7766666666666666,
+        "f1_score": 0.7826321400717982,
+        "by_category": {
+          "complex_reasoning": 0.66,
+          "code_generation": 0.72,
+          "simple_query": 0.76,
+          "creative_writing": 0.82,
+          "document_analysis": 0.92,
+          "data_analysis": 0.78
+        }
+      },
+      "throughput_qps": 479.51904240023674
+    },
+    {
+      "classifier": "GZipKNN",
+      "k": 7,
+      "training_size": 50,
+      "test_size": 300,
+      "latency_ms": {
+        "min": 0.49316600780002773,
+        "avg": 0.5903438795940019,
+        "max": 3.064999997150153,
+        "p95": 0.7378750015050173,
+        "p99": 1.0687499889172614
+      },
+      "accuracy": {
+        "overall": 0.5666666666666667,
+        "precision": 0.6592602421085394,
+        "recall": 0.5666666666666667,
+        "f1_score": 0.609466683841276,
+        "by_category": {
+          "complex_reasoning": 0.58,
+          "code_generation": 0.82,
+          "simple_query": 0.46,
+          "creative_writing": 0.58,
+          "document_analysis": 0.44,
+          "data_analysis": 0.52
+        }
+      },
+      "throughput_qps": 857.9801035470928
+    },
+    {
+      "classifier": "GZipKNN",
+      "k": 7,
+      "training_size": 100,
+      "test_size": 300,
+      "latency_ms": {
+        "min": 0.8905830036383122,
+        "avg": 1.0273678704591778,
+        "max": 1.5883329906500876,
+        "p95": 1.2367079907562584,
+        "p99": 1.365375006571412
+      },
+      "accuracy": {
+        "overall": 0.7533333333333333,
+        "precision": 0.7657534901241995,
+        "recall": 0.7533333333333333,
+        "f1_score": 0.7594926377070557,
+        "by_category": {
+          "complex_reasoning": 0.7,
+          "code_generation": 0.72,
+          "simple_query": 0.76,
+          "creative_writing": 0.76,
+          "document_analysis": 0.88,
+          "data_analysis": 0.7
+        }
+      },
+      "throughput_qps": 484.344179832267
+    },
+    {
+      "classifier": "GZipKNN",
+      "k": 7,
+      "training_size": 200,
+      "test_size": 300,
+      "latency_ms": {
+        "min": 0.8885000133886933,
+        "avg": 1.0371208298602141,
+        "max": 1.4803329831920564,
+        "p95": 1.244415994733572,
+        "p99": 1.356624998152256
+      },
+      "accuracy": {
+        "overall": 0.7633333333333333,
+        "precision": 0.7717794806300553,
+        "recall": 0.7633333333333333,
+        "f1_score": 0.7675331717498896,
+        "by_category": {
+          "complex_reasoning": 0.66,
+          "code_generation": 0.7,
+          "simple_query": 0.84,
+          "creative_writing": 0.78,
+          "document_analysis": 0.9,
+          "data_analysis": 0.7
+        }
+      },
+      "throughput_qps": 481.79848899759355
+    }
+  ]
+}
